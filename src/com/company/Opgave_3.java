@@ -1,11 +1,10 @@
 package com.company;
 
 import java.io.*;
-import java.io.FileOutputStream;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Opgave_2 {
+public class Opgave_3 {
 
     public static void main(String[] args) throws FileNotFoundException {
         File data = new File("Datafile.txt");
@@ -16,6 +15,34 @@ public class Opgave_2 {
         for (int i = 0; i < array.length; i++) {
             array[i] = scanner.nextInt();
         }
+        writeDatafile(array);
+    }
+
+    public static void writeDatafile(int[] array) throws FileNotFoundException {
+        FileOutputStream fout = new FileOutputStream("file3.dat");
+        String stringArray = Arrays.toString(array);
+        try {
+            byte b[] = stringArray.getBytes();
+            fout.write(b);
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public static void readDatafile(int[] array) throws FileNotFoundException {
+        FileInputStream fin = new FileInputStream("file3.dat");
+        try {
+            int i = fin.read();
+            System.out.println((char)i);
+
+            fin.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+        /*
         writeFile(array);
 
         print(array);
@@ -69,5 +96,5 @@ public class Opgave_2 {
 
 
     }
-
+    */
 }
